@@ -1,0 +1,25 @@
+# IBADAH Project Repository
+
+This repository hosts the whitepaper for the "IBADAH" cryptocurrency project and
+serves as a starting point for future development.
+
+The project aims to link worship activities with blockchain technology.
+
+## Directory Structure
+
+- `الورقة البيضاء` – Arabic whitepaper describing the concept.
+- `shamela/` – Placeholder for Al-Maktaba Al-Shamela library files and
+  instructions for integration.
+- `scripts/` – Utility scripts for handling data.
+
+## Adding the Shamela Library
+
+The actual book files are not included in this repository. See
+[`shamela/README.md`](shamela/README.md) for steps on how to obtain and
+prepare the library for use in your application.
+
+## Interactive Viewer
+
+An HTML-based viewer is available in [`viewer/`](viewer) for reading the Arabic
+whitepaper with a simple search feature. Open `viewer/index.html` in your web
+browser to try it out.
