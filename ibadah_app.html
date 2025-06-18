@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تطبيق IBADAH التفاعلي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .currency {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .balance {
+            font-weight: bold;
+            color: green;
+        }
+        .market {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>تطبيق IBADAH التفاعلي</h1>
+
+    <div class="currency">
+        <h3>عملة SHAHADAH</h3>
+        <button onclick="mine('shahadah')">تعدين SHAHADAH</button>
+        <p>الرصيد: <span id="shahadah-balance">0</span></p>
+    </div>
+
+    <div class="currency">
+        <h3>عملة SALAH</h3>
+        <button onclick="mine('salah')">تعدين SALAH</button>
+        <p>الرصيد: <span id="salah-balance">0</span></p>
+    </div>
+
+    <div class="currency">
+        <h3>عملة ZAKAH</h3>
+        <button onclick="mine('zakah')">تعدين ZAKAH</button>
+        <p>الرصيد: <span id="zakah-balance">0</span></p>
+    </div>
+
+    <div class="currency">
+        <h3>عملة SAWM</h3>
+        <button onclick="mine('sawm')">تعدين SAWM</button>
+        <p>الرصيد: <span id="sawm-balance">0</span></p>
+    </div>
+
+    <div class="currency">
+        <h3>عملة HAJJ</h3>
+        <button onclick="mine('hajj')">تعدين HAJJ</button>
+        <p>الرصيد: <span id="hajj-balance">0</span></p>
+    </div>
+
+    <div class="currency">
+        <h3>العملة الجامعة IBADAH</h3>
+        <button onclick="unify()">توحيد العملات</button>
+        <p class="balance">الرصيد الإجمالي: <span id="ibadah-balance">0</span></p>
+    </div>
+
+    <div class="market">
+        <h3>سوق تبادل العملات</h3>
+        <select id="fromCurrency">
+            <option value="shahadah">SHAHADAH</option>
+            <option value="salah">SALAH</option>
+            <option value="zakah">ZAKAH</option>
+            <option value="sawm">SAWM</option>
+            <option value="hajj">HAJJ</option>
+            <option value="ibadah">IBADAH</option>
+        </select>
+        إلى
+        <select id="toCurrency">
+            <option value="shahadah">SHAHADAH</option>
+            <option value="salah">SALAH</option>
+            <option value="zakah">ZAKAH</option>
+            <option value="sawm">SAWM</option>
+            <option value="hajj">HAJJ</option>
+            <option value="ibadah">IBADAH</option>
+        </select>
+        <input type="number" id="amount" placeholder="المبلغ">
+        <button onclick="exchange()">تبديل العملات</button>
+    </div>
+</div>
+
+<script>
+    const balances = { shahadah: 0, salah: 0, zakah: 0, sawm: 0, hajj: 0, ibadah: 0 };
+
+    function mine(currency) {
+        balances[currency]++;
+        document.getElementById(`${currency}-balance`).innerText = balances[currency];
+    }
+
+    function unify() {
+        balances.ibadah = balances.shahadah + balances.salah + balances.zakah + balances.sawm + balances.hajj;
+        document.getElementById('ibadah-balance').innerText = balances.ibadah;
+    }
+
+    function exchange() {
+        const from = document.getElementById('fromCurrency').value;
+        const to = document.getElementById('toCurrency').value;
+        const amount = parseInt(document.getElementById('amount').value);
+
+        if (balances[from] >= amount && amount > 0 && from !== to) {
+            balances[from] -= amount;
+            balances[to] += amount;
+            document.getElementById(`${from}-balance`).innerText = balances[from];
+            document.getElementById(`${to}-balance`).innerText = balances[to];
+        } else {
+            alert('عملية التبادل غير ممكنة، تحقق من الرصيد أو صحة البيانات المدخلة.');
+        }
+    }
+</script>
+
+</body>
+</html>
