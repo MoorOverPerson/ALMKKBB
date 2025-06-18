@@ -11,6 +11,8 @@ The project aims to link worship activities with blockchain technology.
 - `shamela/` – Placeholder for Al-Maktaba Al-Shamela library files and
   instructions for integration.
 - `scripts/` – Utility scripts for handling data.
+- `ibadah_app.html` – Small interactive demo that lets you mine and exchange
+  virtual IBADAH currencies directly in the browser.
 
 ## Adding the Shamela Library
 
